@@ -1,0 +1,22 @@
+{
+  "name": "td2xml",
+  "version": "0.1.1",
+  "description": "Tripledollar Structure to XML transfomation.",
+  "main": "td2xml.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steenk/td2xml.git"
+  },
+  "keywords": [
+    "tripledollar"
+  ],
+  "author": "steenk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/steenk/td2xml/issues"
+  },
+  "homepage": "https://github.com/steenk/td2xml#readme"
+}
