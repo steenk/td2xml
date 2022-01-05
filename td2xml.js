@@ -1,9 +1,9 @@
 /*
     td2xml
 */
-module.exports = function () {
+export default function (xmldecl = true) {
 
-    var ns = {}
+    let ns = {}
 
     function namespace (name, url) {
         if (url) {
@@ -16,14 +16,14 @@ module.exports = function () {
         if (Array.isArray(td)) {
             if (td.length === 0) return '';
             if (typeof td[0] !== 'string') throw new Error('not tdstruct: ' + td[0]);
-            var ident = td.shift()
+            let ident = td.shift()
              ,  n = ident.split(/[\.#]/)
              ,  t = ident.split(/[^\.#]+/)
              ,  e, c = [], id;
             if (t[0] == '') {
               t.shift();
             }
-            for (var i=0; i<n.length; i++) {
+            for (let i=0; i<n.length; i++) {
               if (i === 0) {
                 e = n[i];
               } else {
@@ -34,7 +34,11 @@ module.exports = function () {
                 }
               }
             }
-            var s = '<' + e +
+            let s = '';
+            if (!inner && xmldecl) {
+                s += '<?xml version="1.0" encoding="utf-8" ?>\n';
+            }
+            s += '<' + e +
             (id ? ' id="' + id + '"' : '') +
             (c.length > 0 ? ' class="' + c.join(' ') + '"' : '');
             if (!inner && ns) {
@@ -42,15 +46,15 @@ module.exports = function () {
                     s += ' xmlns:' + k + '="' + ns[k] + '"';
                 } 
             }
-            var cont = '';
+            let cont = '';
             while (td.length > 0) {
-                var next = td.shift();
+                let next = td.shift();
                 if (typeof next === 'string') {
                     cont += next;
                 } else if (Array.isArray(next)) {
                     cont += parse(next, true);
                 } else if (typeof next === 'object') {
-                    var k = Object.keys(next);
+                    let k = Object.keys(next);
                     k.forEach(function (a) {
                         s += ' ' + a + '="' + next[a] + '"';
                     });
@@ -63,7 +67,8 @@ module.exports = function () {
 
      return {
         parse: parse,
-        namespace: namespace
+        namespace: namespace,
+        xmldecl: xmldecl
     };
 
 }

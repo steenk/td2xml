@@ -1,7 +1,8 @@
 {
   "name": "td2xml",
-  "version": "0.1.1",
-  "description": "Tripledollar Structure to XML transfomation.",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "Tripledollar Structure to XML transformation.",
   "main": "td2xml.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
